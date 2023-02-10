@@ -1,7 +1,8 @@
-import seaborn as sns
 import matplotlib.pyplot as plt
-import pandas as pd
 import numpy as np
+import pandas as pd
+import seaborn as sns
+
 sns.set(style="dark")
 
 
@@ -20,5 +21,12 @@ def vis_corr_matrix(df: pd.DataFrame) -> None:
     plt.figure(figsize=(13, 13))
     cmap = sns.diverging_palette(220, 10, as_cmap=True)
     with sns.axes_style("white"):
-        sns.heatmap(corr, cmap=cmap, center=0, mask=mask,
-                    square=True, linewidths=1.5, cbar_kws={"shrink": .5})
+        sns.heatmap(
+            corr,
+            cmap=cmap,
+            center=0,
+            mask=mask,
+            square=True,
+            linewidths=1.5,
+            cbar_kws={"shrink": 0.5},
+        )

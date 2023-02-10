@@ -12,7 +12,7 @@ def read_file(file_path: str) -> str:
     Returns:
         str: File's content.
     """
-    file = open(file_path, 'r', encoding='utf-8')
+    file = open(file_path, "r", encoding="utf-8")
     content = file.read()
     file.close()
 

@@ -2,7 +2,6 @@
 
 
 import os
-# import re
 
 # import numpy as np
 import pandas as pd
@@ -10,10 +9,14 @@ import pandas as pd
 from .GoogleUtils import GoogleUtils
 from .utils import read_file
 
+# import re
+
+
+
 os.chdir(os.path.dirname(__file__))
 
 
-class DatasetLoader():
+class DatasetLoader:
     """
     This class must be used to load all datasets used in the analysis.
     Inside the class, the dataset loading must be implemented as a method.
@@ -22,6 +25,7 @@ class DatasetLoader():
 
     PS: You shold delete the example methods in this file
     """
+
     def __init__(self):
         self.env = os.getenv("ENV", "dev")
         self.google_utils = GoogleUtils()
@@ -51,6 +55,7 @@ class DatasetLoader():
         Returns:
             Lorem ipsum dolor sit amet
         """
+
         def format_user_name(df: pd.DataFrame) -> pd.DataFrame:
             """
             Suspendisse posuere venenatis augue, a rhoncus ante fringilla eget.
@@ -59,9 +64,13 @@ class DatasetLoader():
             Returns:
                 Lorem ipsum dolor sit amet
             """
-            df[["name", "scope"]] = df.user.str.split("@", expand=True,)
-            df["is_service_account"] = (df["scope"] != "hurb.com")
+            df[["name", "scope"]] = df.user.str.split(
+                "@",
+                expand=True,
+            )
+            df["is_service_account"] = df["scope"] != "hurb.com"
             return df
+
         def convert_dolar_cost(df: pd.DataFrame) -> pd.DataFrame:
             """
             Nulla massa leo, laoreet quis massa vitae, scelerisque accumsan nisi.
@@ -73,7 +82,5 @@ class DatasetLoader():
             df["costs"] = df["costs"] * os.getenv("DOLAR_RATE", 5.3)
             return df
 
-        df = (df_costs.pipe(format_user_name)
-            .pipe(convert_dolar_cost)
-        )
+        df = df_costs.pipe(format_user_name).pipe(convert_dolar_cost)
         return df
