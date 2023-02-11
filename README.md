@@ -1,43 +1,64 @@
-# Project name
+# Exploratory Data Analysis - Packages Cancellation
 
-Briefly description about the project motivation and business or technical problem we are trying to solve with this.
+- [Exploratory Data Analysis - Packages Cancellation](#exploratory-data-analysis---packages-cancellation)
+  - [Context](#context)
+  - [Files in the repository](#files-in-the-repository)
+  - [Setup Instructions](#setup-instructions)
 
-## Project questions
+## Context
 
-- Who is conducting this analysis? (put your contact)
-- Is this analysis related initially to some issue or epic? Which ones?
-- Who are the main stakeholders of this analysis?
+This project was developed together with Udacity as part of the Data Science Nanodegree Program.
 
-## Maintainability information
+The main objective of the project is to explore a travel package cancellation dataset. Which is provided by the biggest Brazilian Online Travel Agency, Hurb Technologies.
 
-- There are future works? Wich ones are ideas, and which ones are stakeholders' demands?
-- There are references that someone that continues this work in the future must take into consideration?
+One of Hurb's main products is travel packages, a combination of hotel reservations and flight tickets. When the package already has a specific date for the client to travel, it's called a 'fixed date package,' and when it's not attached to a specific date, it's called a 'flexible date package.'
 
-## Setup information
+Flexible date packages offer the client the opportunity to fill up a form informing three desired dates to travel. It has competitive prices and flexible payment options, a top-selling product. Usually, this product has an extensive valid period, reaching two years in many cases, and flexible cancellation policies.
 
-Follow the guidelines described at the Repository's Wiki (https://github.com/hurbcom/dsc-notebooks/wiki/Local-Development) to setup your local environment, then run the following commands.
+The process of hotel reservation and flight ticket scheduling commonly occurs within 45 days before the first desired date. And this process is called 'operation.'
 
-### Build Image
+Due to the vast time range between the order and the travel itself, financial planning is complex. Additionally, the uncertainty of the cancellation volume adds to this complexity.
 
-```bash
-$ sudo docker build --tag=template-project:1.0 .
-```
+Therefore, this analysis aims to analyze the cancellation of flexible date packages and answer the following questions:
+- a
+- b
+- c
 
-### Run the container
+## Files in the repository
+Repository structure:
 
-Set the ENV variable GOOGLE_APPLICATION_CREDENTIALS in your machine and then run the
-following command:
+- notebooks
+  - exploratory_data_analysis
+    - packages_cancellation_analysis.ipynb
+    - README.md
+- src
+  - visualization
+    - visuals_utils.py
+  - DatasetLoader.py
+  - utils.py
+- .gitignore
+- GoogleUtils.py
+- README.md
+- requirements.txt
 
-```bash
-$ sudo docker create -t -i --name template-project \
-    -p 8000:8000 -v $PWD:/home/user \
-   -e GOOGLE_APPLICATION_CREDENTIALS=/tmp/keys/default.json \
-   -v $GOOGLE_APPLICATION_CREDENTIALS:/tmp/keys/default.json:ro \
-    template-project:1.0
+The `notebooks` folder contains the jupyter notebook containing the analysis and a REAME.md file with information about the dataset.
 
-$ sudo docker start template-project
-$ sudo docker exec -it template-project bash
-$ jupyter lab --ip 0.0.0.0 --port 8000 --allow-root
-```
+The `source` folder contains files containing python functions to help in processes such as dataset load, visualizations and data transformation.
 
-**Do other people running this analysis need to install any custom package on their computer or create additional files?**
+The repository also contains the files: .gitignore which establishes which files and directories must be ignored by Git; README.md which brings these instructions; and requirements.txt which has the required libraries to reproduce this project.
+
+
+## Setup Instructions
+
+The data used in this project, as well as the query file used to recover the data, were not included in the repository due to confidential matters. Although, to reproduce the analysis independently of the data, follow the instructions below.
+
+1. It's recommended to start a virtual environment.
+
+2. Clone this repository:
+   `git clone git@github.com:TamirisCrepalde/survival-analysis.git`.
+
+3. Install the required libraries by running the command: `pip install -r requirements.txt`.
+
+4. Add your own data at `src/data`.
+
+5. Run the notebook.

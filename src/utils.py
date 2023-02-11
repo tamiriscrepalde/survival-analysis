@@ -31,8 +31,8 @@ def convert_to_boolean(df: pd.DataFrame, column: str) -> pd.DataFrame:
     Returns:
         pd.DataFrame: DataFrame containing converted column.
     """
-    df.loc[df[column].isna(), column] = False
     df.loc[~df[column].isna(), column] = True
+    df.loc[df[column].isna(), column] = False
 
     return df
 
