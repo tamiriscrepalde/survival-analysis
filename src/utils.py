@@ -21,8 +21,12 @@ def read_file(file_path: str) -> str:
     return content
 
 
-def convert_to_boolean(df: pd.DataFrame, column: str) -> pd.DataFrame:
-    """Converts a column to boolean.
+def convert_to_boolean(
+    df: pd.DataFrame,
+    column: str,
+    new_column_name: str = None
+) -> pd.DataFrame:
+    """Convert a column to boolean.
 
     Args:
         df (pd.DataFrame): DataFrame containing column of interest.
@@ -31,21 +35,23 @@ def convert_to_boolean(df: pd.DataFrame, column: str) -> pd.DataFrame:
     Returns:
         pd.DataFrame: DataFrame containing converted column.
     """
-    df.loc[~df[column].isna(), column] = True
-    df.loc[df[column].isna(), column] = False
+    if new_column_name is None:
+        new_column_name = column
+    df.loc[~df[column].isna(), new_column_name] = True
+    df.loc[df[column].isna(), new_column_name] = False
 
     return df
 
 
 def create_date_columns(df: pd.DataFrame, columns: List[str]) -> pd.DataFrame:
-    """_summary_
+    """Create year and month columns for a list of columns.
 
     Args:
-        df (pd.DataFrame): _description_
-        column (str): _description_
+        df (pd.DataFrame): DataFrame containing the data to be used.
+        column (List[str]): List of columns to be used.
 
     Returns:
-        pd.DataFrame: _description_
+        pd.DataFrame: DataFrame containing the new columns.
     """
     df_dates = pd.DataFrame()
     for column in columns:
