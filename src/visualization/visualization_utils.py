@@ -3,6 +3,8 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 
+import src.utils as utils
+
 sns.set_style('dark')
 sns.set_palette(sns.color_palette("flare"))
 
@@ -10,7 +12,8 @@ sns.set_palette(sns.color_palette("flare"))
 def double_barplot(
     df: pd.DataFrame,
     column: str,
-    consider_slice: int = None
+    consider_slice: int = None,
+    **kwargs
 ) -> None:
     """Plot two barplots, one showing volume and other showing proportion.
 
@@ -20,19 +23,18 @@ def double_barplot(
         consider_slice (int, optional): Used in a loc to slice the data. Defaults
             to None.
     """
-    slice = df.groupby(column).count().order_date.reset_index()
-    slice = slice.rename(
-        columns={'order_date': 'volume'}
-    ).sort_values('volume', ascending=False).reset_index(drop=True)
-    slice['percent'] = slice.volume/slice.volume.sum()
+    if 'hue' in kwargs.keys():
+        slice = utils.group_data(df, [column, kwargs['hue']])
+    else:
+        slice = utils.group_data(df, [column])
 
     if consider_slice:
         slice = slice.loc[: consider_slice]
 
     _, ax = plt.subplots(2, sharex=True, figsize=(15, 8))
 
-    sns.barplot(slice, x=column, y='volume', ax=ax[0])
-    sns.barplot(slice, x=column, y='percent', ax=ax[1])
+    sns.barplot(slice, x=column, y='volume', ax=ax[0], **kwargs)
+    sns.barplot(slice, x=column, y='percent', ax=ax[1], **kwargs)
 
     plt.xticks(rotation=90)
     ax[0].set_title(f'Volume of cancelled orders by {column}.')
@@ -40,26 +42,30 @@ def double_barplot(
     plt.tight_layout()
 
 
-def single_barplot(df: pd.DataFrame, column: str) -> None:
+def single_barplot(df: pd.DataFrame, column: str, **kwargs) -> None:
     """Plot a single barplot.
 
     Args:
         df (pd.DataFrame): DataFrame with the data to be plot.
         column (str): Column to be plot.
     """
-    slice = df.groupby(column).count().order_date.reset_index()
-    slice = slice.rename(
-        columns={'order_date': 'volume'}
-    ).sort_values('volume', ascending=False).reset_index(drop=True)
-    slice['percent'] = slice.volume/slice.volume.sum()
+    if 'hue' in kwargs.keys():
+        slice = utils.group_data(df, [column, kwargs['hue']])
+    else:
+        slice = utils.group_data(df, [column])
 
     plt.figure(figsize=(5, 6))
 
-    sns.barplot(slice, x=column, y='percent')
+    sns.barplot(slice, x=column, y='percent', **kwargs)
     plt.title(f'Percentage of cancellations by {column}.')
 
 
-def date_relationship(df: pd.DataFrame, column_min: str, column_max: str, new_column: str) -> None:
+def date_relationship(
+    df: pd.DataFrame,
+    column_min: str,
+    column_max: str,
+    new_column: str
+) -> None:
     """Plot the difference between two datetime columns.
 
     Args:
@@ -83,7 +89,12 @@ def date_relationship(df: pd.DataFrame, column_min: str, column_max: str, new_co
         plt.tight_layout()
 
 
-def single_histplot(df: pd.DataFrame, column: str, **kwargs) -> None:
+def single_histplot(
+    df: pd.DataFrame,
+    column: str,
+    consider_slice: int = None,
+    **kwargs
+) -> None:
     """Plot a single histplot.
 
     Args:
@@ -92,7 +103,11 @@ def single_histplot(df: pd.DataFrame, column: str, **kwargs) -> None:
     """
     plt.figure(figsize=(15, 8))
 
-    sns.histplot(df, x=column, stat='proportion', **kwargs)
+    if consider_slice:
+        sns.histplot(df, x=column, stat='proportion', **kwargs)
+    else:
+        sns.histplot(df, x=column, stat='proportion', **kwargs)
 
+    plt.xticks(rotation=90)
     plt.title(f'Proportion of {column} for order.')
     plt.xticks(df[column].unique())

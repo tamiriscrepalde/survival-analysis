@@ -22,10 +22,10 @@ def treat_accom_type(df: pd.DataFrame, column: str) -> pd.DataFrame:
         )
 
     df.loc[df[column].str.contains(','), 'accommodation_type'] = 'multiple'
-    df.loc[df[column].str.contains('individual'), 'accommodation_type'] = 'individual'
-    df.loc[df[column].str.contains('dupl'), 'accommodation_type'] = 'duplo'
-    df.loc[df[column].str.contains('tripl'), 'accommodation_type'] = 'triplo'
-    df.loc[df[column].str.contains('quadrupl'), 'accommodation_type'] = 'quadruplo'
+    df.loc[df[column].str.contains('1|individual'), 'accommodation_type'] = 'single'
+    df.loc[df[column].str.contains('2|dupl|dbl'), 'accommodation_type'] = 'double'
+    df.loc[df[column].str.contains('3|tripl'), 'accommodation_type'] = 'triple'
+    df.loc[df[column].str.contains('4|quadrupl'), 'accommodation_type'] = 'quadruple'
 
     return df
 
@@ -57,4 +57,28 @@ def convert_to_int(df: pd.DataFrame, columns: List[str]) -> pd.DataFrame:
     """
     for column in columns:
         df[column] = df[column].astype(int)
+    return df
+
+
+def anonymize_locations(
+    df: pd.DataFrame,
+    columns: List[str],
+    loc_type: str
+) -> pd.DataFrame:
+    """_summary_
+
+    Args:
+        df (pd.DataFrame): _description_
+        columns (List[str]): _description_
+        loc_type (str): _description_
+
+    Returns:
+        pd.DataFrame: _description_
+    """
+    for column in columns:
+        loc_dict = {
+            loc_: f'{loc_type}_{i+1}' for i, loc_ in enumerate(df[column].unique())
+        }
+        df[column] = df[column].map(loc_dict)
+
     return df

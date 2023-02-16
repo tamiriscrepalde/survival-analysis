@@ -24,7 +24,8 @@ def read_file(file_path: str) -> str:
 def convert_to_boolean(
     df: pd.DataFrame,
     column: str,
-    new_column_name: str = None
+    new_column_name: str = None,
+    consider_column_value: str = None
 ) -> pd.DataFrame:
     """Convert a column to boolean.
 
@@ -37,6 +38,12 @@ def convert_to_boolean(
     """
     if new_column_name is None:
         new_column_name = column
+
+    if consider_column_value:
+        df.loc[df[column] == consider_column_value, new_column_name] = True
+        df.loc[df[column] != consider_column_value, new_column_name] = False
+        return df
+
     df.loc[~df[column].isna(), new_column_name] = True
     df.loc[df[column].isna(), new_column_name] = False
 
@@ -59,3 +66,22 @@ def create_date_columns(df: pd.DataFrame, columns: List[str]) -> pd.DataFrame:
         df_dates[f'{column}_month'] = df[column].dt.month
 
     return df_dates
+
+
+def group_data(df: pd.DataFrame, group: List[str]) -> pd.DataFrame:
+    """_summary_
+
+    Args:
+        df (pd.DataFrame): _description_
+        group (List[str]): _description_
+
+    Returns:
+        pd.DataFrame: _description_
+    """
+    grouped = df.groupby(group).count().iloc[:, -1].reset_index()
+    grouped = grouped.rename(
+        columns={grouped.iloc[:, -1].name: 'volume'}
+    ).sort_values('volume', ascending=False).reset_index(drop=True)
+    grouped['percent'] = grouped.volume/grouped.volume.sum()
+
+    return grouped
