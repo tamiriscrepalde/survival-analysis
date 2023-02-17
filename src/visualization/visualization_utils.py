@@ -56,6 +56,7 @@ def single_barplot(df: pd.DataFrame, column: str, **kwargs) -> None:
 
     plt.figure(figsize=(5, 6))
 
+    plt.xticks(rotation=45)
     sns.barplot(slice, x=column, y='percent', **kwargs)
     plt.title(f'Percentage of cancellations by {column}.')
 

@@ -60,10 +60,10 @@ def convert_to_int(df: pd.DataFrame, columns: List[str]) -> pd.DataFrame:
     return df
 
 
-def anonymize_locations(
+def anonymize_data(
     df: pd.DataFrame,
     columns: List[str],
-    loc_type: str
+    type_: str
 ) -> pd.DataFrame:
     """_summary_
 
@@ -76,9 +76,9 @@ def anonymize_locations(
         pd.DataFrame: _description_
     """
     for column in columns:
-        loc_dict = {
-            loc_: f'{loc_type}_{i+1}' for i, loc_ in enumerate(df[column].unique())
+        dict_ = {
+            loc_: f'{type_}_{i+1}' for i, loc_ in enumerate(df[column].unique())
         }
-        df[column] = df[column].map(loc_dict)
+        df[column] = df[column].map(dict_)
 
     return df

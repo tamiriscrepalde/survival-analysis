@@ -85,3 +85,18 @@ def group_data(df: pd.DataFrame, group: List[str]) -> pd.DataFrame:
     grouped['percent'] = grouped.volume/grouped.volume.sum()
 
     return grouped
+
+
+def build_date_relationship(
+    df: pd.DataFrame,
+    column_min: str,
+    column_max: str,
+    new_column: str
+) -> pd.DataFrame:
+
+    df_dates = pd.DataFrame()
+    df_dates[new_column] = (df[column_max] - df[column_min])
+    df_dates[f'{new_column}_days'] = df_dates[new_column].astype('timedelta64[D]').astype(int)
+    df_dates[f'{new_column}_months'] = df_dates[new_column].astype('timedelta64[M]').astype(int)
+
+    return df_dates
