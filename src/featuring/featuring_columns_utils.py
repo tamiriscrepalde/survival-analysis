@@ -65,15 +65,15 @@ def anonymize_data(
     columns: List[str],
     type_: str
 ) -> pd.DataFrame:
-    """_summary_
+    """Anonymize the data based on number of unique elements.
 
     Args:
-        df (pd.DataFrame): _description_
-        columns (List[str]): _description_
-        loc_type (str): _description_
+        df (pd.DataFrame): DataFrame containing the data to be anonymize.
+        columns (List[str]): Columns to be anonymize.
+        type_ (str): Type of data to be anonymize.
 
     Returns:
-        pd.DataFrame: _description_
+        pd.DataFrame: DataFrame containing the anonymized data.
     """
     for column in columns:
         dict_ = {

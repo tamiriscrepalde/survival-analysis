@@ -37,8 +37,8 @@ def double_barplot(
     sns.barplot(slice, x=column, y='percent', ax=ax[1], **kwargs)
 
     plt.xticks(rotation=90)
-    ax[0].set_title(f'Volume of cancelled orders by {column}.')
-    ax[1].set_title(f'Percentage of cancelled orders by {column}.')
+    ax[0].set_title(f'Volume of canceled orders by {column}.')
+    ax[1].set_title(f'Percentage of canceled orders by {column}.')
     plt.tight_layout()
 
 
@@ -86,7 +86,7 @@ def date_relationship(
         sns.histplot(df_dates[col], kde=True, stat='proportion')
 
         t = col.split('_')[-1:][0]
-        plt.title(f'Volume of cancelled orders by {new_column} in {t}.')
+        plt.title(f'Volume of canceled orders by {new_column} in {t}.')
         plt.tight_layout()
 
 
@@ -101,6 +101,8 @@ def single_histplot(
     Args:
         df (pd.DataFrame): DataFrame with the data to be plot.
         column (str): Column to be plot.
+        consider_slice (int, optional): Used in a loc to slice the data. Defaults
+            to None.
     """
     plt.figure(figsize=(15, 8))
 

@@ -69,14 +69,14 @@ def create_date_columns(df: pd.DataFrame, columns: List[str]) -> pd.DataFrame:
 
 
 def group_data(df: pd.DataFrame, group: List[str]) -> pd.DataFrame:
-    """_summary_
+    """Group data and create volume and percent columns.
 
     Args:
-        df (pd.DataFrame): _description_
-        group (List[str]): _description_
+        df (pd.DataFrame): DataFrame containing the data.
+        group (List[str]): Columns to group for.
 
     Returns:
-        pd.DataFrame: _description_
+        pd.DataFrame: DataFrame containing the grouped data.
     """
     grouped = df.groupby(group).count().iloc[:, -1].reset_index()
     grouped = grouped.rename(
@@ -93,6 +93,17 @@ def build_date_relationship(
     column_max: str,
     new_column: str
 ) -> pd.DataFrame:
+    """Calculate the difference between two datetime columns.
+
+    Args:
+        df (pd.DataFrame): DataFrame containing the datetime columns.
+        column_min (str): Datetime column to be subtracted for.
+        column_max (str): Datetime column to be subtracted from.
+        new_column (str): Column to be generated.
+
+    Returns:
+        pd.DataFrame: DataFrame containing the new columns.
+    """
 
     df_dates = pd.DataFrame()
     df_dates[new_column] = (df[column_max] - df[column_min])

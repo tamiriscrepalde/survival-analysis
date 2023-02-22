@@ -9,9 +9,9 @@
 
 This project was developed together with Udacity as part of the Data Science Nanodegree Program.
 
-The main objective of the project is to explore a travel package cancellation dataset. Which is provided by the biggest Brazilian Online Travel Agency, Hurb Technologies.
+The main objective of the project is to explore a travel package cancellation dataset. Which is provided by the a Brazilian Online Travel Agency.
 
-One of Hurb's main products is travel packages, a combination of hotel reservations and flight tickets. When the package already has a specific date for the client to travel, it's called a 'fixed date package,' and when it's not attached to a specific date, it's called a 'flexible date package.'
+One of this OTA's main products is travel packages, a combination of hotel reservations and flight tickets. When the package already has a specific date for the client to travel, it's called a 'fixed date package,' and when it's not attached to a specific date, it's called a 'flexible date package.'
 
 Flexible date packages offer the client the opportunity to fill up a form informing three desired dates to travel. It has competitive prices and flexible payment options, a top-selling product. Usually, this product has an extensive valid period, reaching two years in many cases, and flexible cancellation policies.
 
@@ -20,9 +20,9 @@ The process of hotel reservation and flight ticket scheduling commonly occurs wi
 Due to the vast time range between the order and the travel itself, financial planning is complex. Additionally, the uncertainty of the cancellation volume adds to this complexity.
 
 Therefore, this analysis aims to analyze the cancellation of flexible date packages and answer the following questions:
-- a
-- b
-- c
+- Are international travels more canceled than national ones?
+- Is the number of status changes related to the cancellation process?
+- Which are the features that have the most impact on cancellation?
 
 ## Files in the repository
 Repository structure:
@@ -33,8 +33,7 @@ Repository structure:
     - README.md
 - src
   - visualization
-    - visuals_utils.py
-  - DatasetLoader.py
+    - visualization_utils.py
   - utils.py
 - .gitignore
 - GoogleUtils.py

@@ -1,6 +1,6 @@
 # Exploratory Data Analysis
 
-As explained at the introductory [README.md](README.md), the main objective of this analysis is to explore Hurb's flexible date package cancellations. The following information helps to better understand the data used.
+As explained in the introductory [README.md](README.md), the main objective of this analysis is to explore Hurb's flexible date package cancellations. The following information helps to better understand the data used.
 
 #### Columns:
 - operation_id (numerical) - Unique identifier of a single operation. It only exists if the operation process was initiated before cancellation. Otherwise, it is null.
@@ -26,9 +26,7 @@ As explained at the introductory [README.md](README.md), the main objective of t
 
 ## General questions
 
-- **Which questions are you trying to ask?**
-
-- **What are your strong assumptions?**
-
-
-## Analysis summary
+- **Which questions are you trying to answer?**
+  - Are international travels more canceled than national ones?
+  - Is the number of status changes related to the cancellation process?
+  - Which are the features that have the most impact on cancellation?
