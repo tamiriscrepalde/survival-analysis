@@ -24,6 +24,8 @@ Therefore, this analysis aims to analyze the cancellation of flexible date packa
 - Is the number of status changes related to the cancellation process?
 - Which are the features that have the most impact on cancellation?
 
+An article was posted on Medium related to this project, you can read it [here](https://medium.com/@tamiriscrepalde/exploratory-data-analysis-on-travel-packages-cancellation-5e3972d50121).
+
 ## Files in the repository
 Repository structure:
 
