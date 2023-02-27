@@ -114,3 +114,22 @@ def single_histplot(
     plt.xticks(rotation=90)
     plt.title(f'Proportion of {column} for order.')
     plt.xticks(df[column].unique())
+
+
+def single_boxplot(
+    df: pd.DataFrame,
+    column: str
+) -> None:
+    """Plot a single boxplot.
+
+    Args:
+        df (pd.DataFrame): DataFrame with the data to be plot.
+        column (str): Column to be plot.
+    """
+    plt.figure(figsize=(5, 8))
+
+    sns.boxplot(df[column])
+
+    plt.xticks(rotation=90)
+    plt.title(f'Boxplot distribution of {column}.')
+    # plt.xticks(df[column].unique())
