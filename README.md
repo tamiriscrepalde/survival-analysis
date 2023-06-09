@@ -1,6 +1,6 @@
-# Exploratory Data Analysis - Packages Cancellation
+# Survival Analysis - Packages Cancellation
 
-- [Exploratory Data Analysis - Packages Cancellation](#exploratory-data-analysis---packages-cancellation)
+- [Survival Analysis - Packages Cancellation](#survival-analysis---packages-cancellation)
   - [Context](#context)
   - [Files in the repository](#files-in-the-repository)
   - [Setup Instructions](#setup-instructions)
@@ -9,7 +9,7 @@
 
 This project was developed together with Udacity as part of the Data Science Nanodegree Program.
 
-The main objective of the project is to explore a travel package cancellation dataset. Which is provided by the a Brazilian Online Travel Agency.
+The main objective of the project is to explore a travel package cancellation dataset. Which is provided by a Brazilian Online Travel Agency.
 
 One of this OTA's main products is travel packages, a combination of hotel reservations and flight tickets. When the package already has a specific date for the client to travel, it's called a 'fixed date package,' and when it's not attached to a specific date, it's called a 'flexible date package.'
 
