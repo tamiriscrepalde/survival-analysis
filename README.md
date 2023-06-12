@@ -9,7 +9,7 @@
 
 This project was developed together with Udacity as part of the Data Science Nanodegree Program.
 
-The main objective of the project is to explore a travel package cancellation dataset. Which is provided by a Brazilian Online Travel Agency.
+The main objective of the project is to explore a travel package cancellation dataset, which is provided by a Brazilian Online Travel Agency, and explore a predictive approach to the cancellation of those packages using survival analysis.
 
 One of this OTA's main products is travel packages, a combination of hotel reservations and flight tickets. When the package already has a specific date for the client to travel, it's called a 'fixed date package,' and when it's not attached to a specific date, it's called a 'flexible date package.'
 
@@ -24,7 +24,12 @@ Therefore, this analysis aims to analyze the cancellation of flexible date packa
 - Is the number of status changes related to the cancellation process?
 - Which are the features that have the most impact on cancellation?
 
-An article was posted on Medium related to this project, you can read it [here](https://medium.com/@tamiriscrepalde/exploratory-data-analysis-on-travel-packages-cancellation-5e3972d50121).
+Then we explore the survival times of the cancellation of travel packages and we try to establish a predictive model considering survival analysis techniques.
+
+
+Two articles were posted on Medium related to this project, you can read at the following links:
+- [EDA on Travel Packages Cancellation](https://medium.com/@tamiriscrepalde/exploratory-data-analysis-on-travel-packages-cancellation-5e3972d50121)
+- [Predicting Travel Package Cancellation: a survival analysis approach](https://medium.com/@tamiriscrepalde/predicting-travel-package-cancellation-a-survival-analysis-approach-be5e1c6d88ab)
 
 ## Files in the repository
 Repository structure:
@@ -33,6 +38,8 @@ Repository structure:
   - exploratory_data_analysis
     - packages_cancellation_analysis.ipynb
     - README.md
+  - survival_analysis
+    - packages_cancellation_survival_analsis.ipynb
 - src
   - visualization
     - visualization_utils.py
